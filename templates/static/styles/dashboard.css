@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f6fc;
+}
+
+.title {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 2.0243rem;
+    font-weight: 500;
+    margin-bottom: 35px;
+}
+
+.content {
+    padding: 35px 20px;
+    max-width: 85%;
+    min-width: 85%;
+    text-align: center;
+}
+
+.row {
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.small-box {
+    border-radius: 25px;
+}
+
+.number {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+i {
+    margin-right: 10px;
+}

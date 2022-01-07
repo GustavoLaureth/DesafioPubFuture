@@ -1,0 +1,60 @@
+{% load static %}
+
+{% include 'partials/_head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+</head>
+
+<body> 
+    {% include 'partials/_side_bar.html' %}
+
+    <div class="content">
+        <div class="title">
+            <h1 class="title">Dashboard</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-2">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="number">R$ 150,00</h3>
+                  <p>Receitas</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="number">R$ 53,00</h3>
+  
+                  <p>Despesas</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="number">R$ 97,00</h3>
+  
+                  <p>Saldo Atual</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</body>
