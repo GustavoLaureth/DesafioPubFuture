@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from desafio_pub_future.views import (
-    register,
+    registerPage,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('desafio_pub_future.urls')),
-    path('register/', register, name='register')
+    path('register/', registerPage, name='register'),
 ]
