@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegistrationForm, AccountAuthenticationForm
-from django.contrib.auth import login, authenticate
+from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
+from django.contrib.auth import login, authenticate, logout
 
 from .models import Account
 
@@ -51,3 +51,28 @@ def registerPage(request):
 
 def dashboard(request):
     return render(request, 'pages/dashboard.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+def account_view(request):
+    
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    context = {}
+
+    if request.POST:
+        form = AccountUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AccountUpdateForm(
+                initial= {
+                    'email': request.user.email,
+                    'username': request.user.username,
+                }
+            )
+    context['account_form'] = form
+    return render(request, 'pages/account.html', context)

@@ -18,10 +18,14 @@ from django.urls import path, include
 
 from desafio_pub_future.views import (
     registerPage,
+    logout_view,
+    account_view,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('desafio_pub_future.urls')),
     path('register/', registerPage, name='register'),
+    path('logout/', logout_view, name='logout'),
+    path('account/', account_view, name='account'),
 ]
