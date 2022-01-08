@@ -10,33 +10,51 @@
     
       <div class="card">
         <div class="card-body register-card-body">
-          <p class="login-box-msg">Register a new membership</p>
     
-          <form method="post">
-            {% csrf_token %}
-            {% for field in registration_form %}
-              <p>
-                {{field.label_tag}}
-                {{field}}
-              </p>
-            {% endfor %}
+          <form class="form-signin" method="post">{% csrf_token %}
 
-            <button class='btn btn-info col-12'type="submit">register</button>
+            <h1 class="h3 mb-3 font-weight-normal text-center">Cadastrar uma conta</h1>
+  
+            <input type="text" name="username" id="inputUsername" class="form-control mb-3" placeholder="Username" required autofocus>
+            
+            <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required>
+  
+            <input type="password" name="password1" id="inputPassword1" class="form-control mb-3" placeholder="Senha" required>
+            
+            <input type="password" name="password2" id="inputPassword1" class="form-control mb-3" placeholder="Confirmar senha" required>
+
+            {% for field in login_form %}
+            <p>
+              {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+            {% endfor %}
+            </p>
+            {% endfor %}
+            {% if login_form.non_field_errors %}
+            <div style="color: red;">
+              <p>{{login_form.non_field_errors}}</p>
+            </div>
+  
+            {% endif %}
+  
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  
+            {% endfor %}
+            {% endif %}
+  
+            <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Cadastrar</button>
           </form>
     
-          <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i>
-              Sign up using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i>
-              Sign up using Google+
-            </a>
-          </div>
-    
-          <a href="{% url 'login' %}" class="text-center">I already have a membership</a>
+          <p class="text-center mb-0">
+            <a href="{% url 'login' %}">Eu já tenho uma conta</a>
+          </p>
         </div>
         <!-- /.form-box -->
       </div><!-- /.card -->

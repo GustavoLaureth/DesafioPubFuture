@@ -3,57 +3,73 @@
 {% include 'partials/_head.html' %}
 
 <body class="login-page" style="min-height: 496.781px;">
-    <div class="login-box">
-      <div class="login-logo">
-        <p><b>Admin</b>LTE</p>
-      </div>
-      <!-- /.login-logo -->
-      <div class="card">
-        <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
-    
-          <form method="post">
-            {% csrf_token %}
-            {% for field in login_form %}
-              <p>
-                {{field.label_tag}}
-                {{field}}
-              </p>
-            {% endfor %}
-
-
-            <button type="submit">Login</button>
-          </form>
-    
-          <div class="social-auth-links text-center mb-3">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-            </a>
-          </div>
-          <!-- /.social-auth-links -->
-    
-          <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-          <p class="mb-0">
-            <a href="{% url 'register' %}" class="text-center">Register a new membership</a>
-          </p>
-        </div>
-        <!-- /.login-card-body -->
-      </div>
+  <div class="login-box">
+    <div class="login-logo">
+      <p><b>Pub</b> Finanças Pessoais</p>
     </div>
-    <!-- /.login-box -->
-    
-    <!-- jQuery -->
-    <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- AdminLTE App -->
-    <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
-    
-    
-    </body>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+
+        <form class="form-signin" method="post">{% csrf_token %}
+
+          <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+
+          <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required
+            autofocus>
+
+          <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Senha"
+            required>
+
+          {% for field in login_form %}
+          <p>
+            {% for error in field.errors %}
+          <p style="color: red;">{{error}}</p>
+          {% endfor %}
+          </p>
+          {% endfor %}
+          {% if login_form.non_field_errors %}
+          <div style="color: red;">
+            <p>{{login_form.non_field_errors}}</p>
+          </div>
+
+          {% endif %}
+
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          {% endfor %}
+          {% endif %}
+
+          <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Log in</button>
+        </form>
+
+        <!-- /.social-auth-links -->
+
+        <p class="mb-1 text-center">
+          <a href="forgot-password.html">Esqueci minha senha</a>
+        </p>
+        <p class="mb-0 text-center">
+          <a href="{% url 'register' %}" class="text-center">Registrar uma nova conta</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
+
+
+</body>

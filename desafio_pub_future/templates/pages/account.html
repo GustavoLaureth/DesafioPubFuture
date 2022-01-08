@@ -2,46 +2,43 @@
 
 {% include 'partials/_head.html' %}
 
+
 <body class="login-page" style="min-height: 496.781px;">
     <div class="login-box">
       <div class="login-logo">
-        <p><b>Admin</b>LTE</p>
+        <p><b>Pub</b> Finanças pessoais</p>
       </div>
       <!-- /.login-logo -->
       <div class="card">
         <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
     
-          <form method="post">
-            {% csrf_token %}
+          <form class="form-signin" method="post">{% csrf_token %}
+
+            <h1 class="h3 mb-3 font-weight-normal text-center">Perfil</h1>
+  
+            <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required
+              autofocus value="{{account_form.initial.email}}">
+  
+            <input type="text" name="username" id="inputUsername" class="form-control mb-3" placeholder="Username"
+              required value="{{account_form.initial.username}}">
+  
             {% for field in account_form %}
-              <p>
-                {{field.label_tag}}
-                {{field}}
-              </p>
+            <p>
+              {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
             {% endfor %}
+            </p>
+            {% endfor %}
+            {% if account_form.non_field_errors %}
+            <div style="color: red;">
+              <p>{{account_form.non_field_errors}}</p>
+            </div>
+  
+            {% endif %}
 
-
-            <button type="submit">Salvar alterações</button>
+            <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Salvar alterações</button>
           </form>
     
-          <div class="social-auth-links text-center mb-3">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-            </a>
-          </div>
-          <!-- /.social-auth-links -->
-    
-          <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-          <p class="mb-0">
-            <a href="{% url 'register' %}" class="text-center">Register a new membership</a>
-          </p>
         </div>
         <!-- /.login-card-body -->
       </div>

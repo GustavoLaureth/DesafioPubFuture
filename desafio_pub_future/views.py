@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+from time import sleep
 
 from .models import Account
 
@@ -66,7 +68,12 @@ def account_view(request):
     if request.POST:
         form = AccountUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
+            form.initial = {
+                    'email': request.POST['email'],
+                    'username': request.POST['username'],
+            }
             form.save()
+            return redirect('dashboard')
     else:
         form = AccountUpdateForm(
                 initial= {
