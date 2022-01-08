@@ -14,7 +14,7 @@
     
           <form method="post">
             {% csrf_token %}
-            {% for field in login_form %}
+            {% for field in account_form %}
               <p>
                 {{field.label_tag}}
                 {{field}}
@@ -22,7 +22,7 @@
             {% endfor %}
 
 
-            <button type="submit">Login</button>
+            <button type="submit">Salvar alterações</button>
           </form>
     
           <div class="social-auth-links text-center mb-3">
