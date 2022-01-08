@@ -25,7 +25,7 @@ from desafio_pub_future.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('desafio_pub_future.urls')),
-    path('register/', registerPage, name='register'),
-    path('logout/', logout_view, name='logout'),
-    path('account/', account_view, name='account'),
+    path('cadastro/', registerPage, name='register'),
+    path('sair/', logout_view, name='logout'),
+    path('perfil/', account_view, name='account'),
 ]
