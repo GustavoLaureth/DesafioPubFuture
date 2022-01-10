@@ -11,29 +11,15 @@
     <div class="card">
       <div class="card-body login-card-body">
 
-        <form class="form-signin" method="post">{% csrf_token %}
+        <form class="form-signin" method="POST">{% csrf_token %}
 
           <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
 
-          <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required
+          <input type="email" name="username" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required
             autofocus>
 
           <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Senha"
             required>
-
-          {% for field in login_form %}
-          <p>
-            {% for error in field.errors %}
-          <p style="color: red;">{{error}}</p>
-          {% endfor %}
-          </p>
-          {% endfor %}
-          {% if login_form.non_field_errors %}
-          <div style="color: red;">
-            <p>{{login_form.non_field_errors}}</p>
-          </div>
-
-          {% endif %}
 
           {% if messages %}
           {% for message in messages %}
@@ -53,7 +39,7 @@
         <!-- /.social-auth-links -->
 
         <p class="mb-1 text-center">
-          <a href="forgot-password.html">Esqueci minha senha</a>
+          <a href="#">Esqueci minha senha</a>
         </p>
         <p class="mb-0 text-center">
           <a href="{% url 'register' %}" class="text-center">Registrar uma nova conta</a>

@@ -71,8 +71,6 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'desafio_pub_future.Account'
-
 WSGI_APPLICATION = 'DesafioPubFuture.wsgi.application'
 
 

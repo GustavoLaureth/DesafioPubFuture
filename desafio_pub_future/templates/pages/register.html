@@ -11,7 +11,8 @@
       <div class="card">
         <div class="card-body register-card-body">
     
-          <form class="form-signin" method="post">{% csrf_token %}
+          <form class="user" method="POST">
+            {% csrf_token %}
 
             <h1 class="h3 mb-3 font-weight-normal text-center">Cadastrar uma conta</h1>
   
@@ -23,19 +24,6 @@
             
             <input type="password" name="password2" id="inputPassword1" class="form-control mb-3" placeholder="Confirmar senha" required>
 
-            {% for field in registration_form %}
-            <p>
-              {% for error in field.errors %}
-            <p style="color: red;">{{error}}</p>
-            {% endfor %}
-            </p>
-            {% endfor %}
-            {% if registration_form.non_field_errors %}
-            <div style="color: red;">
-              <p>{{registration_form.non_field_errors}}</p>
-            </div>
-  
-            {% endif %}
   
             <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Cadastrar</button>
           </form>
