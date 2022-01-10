@@ -1,0 +1,26 @@
+{% load static %}
+
+{% include 'partials/_head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/income_form.css' %}">
+</head>
+
+<body>
+    {% include 'partials/_side_bar.html' %}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+    
+                <h1>Incomes {{ object.pk }}</h1>
+
+                <form method="post">{% csrf_token %}
+                    <p>Are you sure you want to delete "{{ object }}"?</p>
+                    <input type="submit" value="Confirm">
+                </form>
+    
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,52 +1,42 @@
 from django.forms import ModelForm, fields
 from django import forms
-from django.forms.widgets import PasswordInput
-from django.contrib.auth import authenticate
+from .models import Income
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-from .models import Account
-
-class RegistrationForm(UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = Account
-        # Campos que vão para o Register. (são do model Account em models.)
+        model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+    username = forms.Field(widget=forms.TextInput(attrs={
+        'class': 'form-control mb-3', 'placeholder': 'Username'
+    }))
+    email = forms.Field(widget=forms.EmailInput(attrs={
+        'class': 'form-control mb-3', 'placeholder': 'E-mail'
+    }))
+    password1 = forms.Field(widget=forms.PasswordInput(attrs={
+        'class': 'form-control mb-3', 'placeholder': 'Senha'
+    }))
+    password2 = forms.Field(widget=forms.PasswordInput(attrs={
+        'class': 'form-control mb-3', 'placeholder': 'Confirmar Senha'
+    }))
 
-class AccountAuthenticationForm(forms.ModelForm):
+    def save(self, commit=True):
+        instance = super().save(commit=True)
+        instance.username = instance.email
+        if commit:
+            instance.save()
+        return instance
 
-    password = forms.CharField(label='Passsword', widget=PasswordInput)
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
+
+class IncomeForm(forms.ModelForm):
     class Meta:
-        model = Account
-        fields = ('email', 'password')
-
-    def clean(self):
-        email = self.cleaned_data['email']
-        password = self.cleaned_data['password']
-        if not authenticate(email=email, password=password):
-            raise forms.ValidationError('Login Inválido!')
-
-
-class AccountUpdateForm(forms.ModelForm):
-
-    class Meta:
-        model = Account
-        fields = ('email', 'username')
-    
-    def clean_email(self):
-        if self.is_valid():
-            email = self.cleaned_data['email']
-            try:
-                account = Account.objects.exclude(pk=self.instance.pk).get(email=email)
-            except Account.DoesNotExist:
-                return email
-            raise forms.ValidationError("Email '%s' is alredy in use." % email)
-    def clean_username(self):
-        if self.is_valid():
-            username = self.cleaned_data['username']
-            try:
-                account = Account.objects.exclude(pk=self.instance.pk).get(username=username)
-            except Account.DoesNotExist:
-                return username
-            raise forms.ValidationError("Username '%s' is alredy in use." % username)
+        model = Income
+        fields = ['value','date','type','repetitive','repetition_interval','repetition_time', 'comment']
+        widgets = {
+            'date': DateInput()
+        }

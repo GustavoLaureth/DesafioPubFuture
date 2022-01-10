@@ -26,7 +26,6 @@ body {
     padding: 35px 20px;
     max-width: 85%;
     min-width: 85%;
-    text-align: center;
 }
 
 .row {
@@ -36,17 +35,4 @@ body {
 
 i {
     margin-right: 10px;
-}
-
-.menu {
-    margin-top: 5px;
-    padding: 0 0 8px 0;
-    background-color: #343a40;
-    border-radius: 5px;
-    text-align: left;
-    display: none;
-}
-
-.menu li {
-    list-style: none;
 }
