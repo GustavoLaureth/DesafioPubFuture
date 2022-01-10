@@ -4,7 +4,7 @@ from django.forms.widgets import PasswordInput
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Account
+from .models import Account, Income
 
 class RegistrationForm(UserCreationForm):
     class Meta:
@@ -50,3 +50,16 @@ class AccountUpdateForm(forms.ModelForm):
             except Account.DoesNotExist:
                 return username
             raise forms.ValidationError("Username '%s' is alredy in use." % username)
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class IncomeForm(forms.ModelForm):
+    class Meta:
+        model = Income
+        fields = ['value','date','type','repetitive','repetition_interval','repetition_time', 'comment']
+        widgets = {
+            'date': DateInput()
+        }

@@ -1,0 +1,27 @@
+i {
+    margin-right: 10px;
+}
+
+.menu {
+    margin-top: 5px;
+    padding: 0 0 8px 0;
+    background-color: #343a40;
+    border-radius: 5px;
+    text-align: left;
+    display: none;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.nav-link:hover {
+    transition: .3s;
+    background-color: #282c30;
+}
+
+.active {
+    background-color: #f5f6fc !important;
+    color: #282c30 !important;
+    font-weight: 500 !important;
+}

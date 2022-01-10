@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(l@j9zf=xmrb7!+69$i7@@o2tqz014r#0u)7c9rj=1au(r0qe_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'desafio_pub_future.apps.DesafioPubFutureConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
@@ -138,3 +139,6 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.ERROR: 'alert-danger',
 }
+
+# CRISPY TEMPLATE
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,3 +1,7 @@
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +10,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from time import sleep
 
-from .models import Account
+from .forms import IncomeForm
+
+from .models import Account, Income
 
 def loginPage(request):
     context = {}
@@ -83,3 +89,30 @@ def account_view(request):
             )
     context['account_form'] = form
     return render(request, 'pages/account.html', context)
+
+
+class IncomeListView(ListView):
+    model = Income
+    paginate_by = 100
+
+
+class IncomeDetailView(DetailView):
+    model = Income
+
+
+class IncomeCreateView(CreateView):
+    model = Income
+    form_class = IncomeForm
+    success_url = reverse_lazy('income_list')
+
+
+class IncomeUpdateView(UpdateView):
+    model = Income
+    form_class = IncomeForm
+    success_url = reverse_lazy('income_list')
+
+
+class IncomeDeleteView(DeleteView):
+    model = Income
+    success_url = reverse_lazy('income_list')
+

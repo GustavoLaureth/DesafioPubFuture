@@ -1,0 +1,25 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% include 'partials/_head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/income_form.css' %}">
+</head>
+
+<body>
+    {% include 'partials/_side_bar.html' %}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+    
+                <form method="post">{% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="submit">
+                </form>
+    
+            </div>
+        </div>
+    </div>
+</body>
