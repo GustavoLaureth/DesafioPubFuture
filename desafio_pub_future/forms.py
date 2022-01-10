@@ -2,7 +2,7 @@ from django.forms import ModelForm, fields
 from django import forms
 from .models import Income
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.model import User
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
