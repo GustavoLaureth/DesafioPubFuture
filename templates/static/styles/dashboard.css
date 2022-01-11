@@ -49,3 +49,11 @@ i {
 .menu li {
     list-style: none;
 }
+
+.small-box {
+    border-radius: .5rem !important;
+    height: 180px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

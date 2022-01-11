@@ -57,6 +57,8 @@ def logout_view(request):
 
 def dashboard(request):
     last_balance = Balance.objects.filter(user=request.user, type=1).order_by('-date').first()
+    last_income = Income.objects.filter(user=request.user, type=1).order_by('-date').first()
+    last_expense = Expense.objects.filter(user=request.user, type=1).order_by('-date').first()
     if not last_balance:
         messages.warning(request, 'Nenhum saldo foi registrado. Adicione pelo menos um registro de saldo.')
         return render(request, 'pages/dashboard.html')
@@ -76,6 +78,8 @@ def dashboard(request):
 
     context = {
         'last_balance': last_balance,
+        'last_income': last_income,
+        'last_expense': last_expense,
         'estimated_balance': last_balance.value + total_income - total_expense,
         'total_income': total_income,
         'total_expense': total_expense

@@ -27,56 +27,91 @@
         <div class="row">
             <div class="col-lg-3 col-2">
               <!-- small box -->
-              <div class="small-box bg-light">
+              <div class="small-box bg-light" style="border-left: 4px solid #1890ff;">
                 <div class="inner">
-                  <h5 class="mb-0">Ultimo saldo verificado</p>
+                  <h5 class="mb-0" style="color: #1890ff;">Ultimo saldo verificado</p>
                   <h4 class="number mb-0">R$ {{ last_balance.value | intcomma }}</h4>
                   <p class="text-muted">{{ last_balance.date }}</p>
                 </div>
                 <div class="icon">
-                  <i class="fas fa-calendar"></i>
+                  <i class="fas fa-calendar mt-4"></i>
                 </div>
               </div>
             </div>
             <!-- ./col -->
             <div class="col-lg-3 col-2">
               <!-- small box -->
-              <div class="small-box bg-light">
+              <div class="small-box bg-light" style="border-left: 4px solid #00796b;">
                 <div class="inner">
-                  <h5>Saldo Estimado</p>
+                  <h5 class="mb-0" style="color: #00796b;">Saldo Estimado</p>
                   <h4 class="number">R$ {{ estimated_balance | intcomma }}</h4>
+                  <p class="text-muted" style="color: transparent !important;">-</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-dollar-sign mt-4"></i>
                 </div>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-2">
               <!-- small box -->
-              <div class="small-box bg-light">
+              <div class="small-box bg-light" style="border-left: 4px solid #4caf50;">
                 <div class="inner">
-                  <h5>Receitas</h5>
+                  <h5 class="mb-0" style="color: #4caf50;">Saldo Estimado</p>
                   <h4 class="number">R$ {{ total_income | intcomma }}</h4>
+                  <p class="text-muted mb-0">Ultima receita:</p>
+                  <p class="text-muted mb-0">{{ last_income.date }}</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-arrow-up mt-4"></i>
                 </div>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-2">
               <!-- small box -->
-              <div class="small-box bg-light">
+              <div class="small-box bg-light" style="border-left: 4px solid #f44336;">
                 <div class="inner">
-                  <h5>Despesas</h5>
+                  <h5 class="mb-0" style="color: #f44336;">Despesas</p>
                   <h4 class="number">R$ {{ total_expense | intcomma }}</h4>
+                  <p class="text-muted mb-0">Ultima despesa:</p>
+                  <p class="text-muted mb-0">{{ last_expense.date }}</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fas fa-arrow-down mt-4"></i>
                 </div>
               </div>
             </div>
+            <!-- ./col -->
+            <!-- <div class="col-lg-3 col-6"> -->
+              <!-- small box -->
+              <!-- <div class="small-box bg-light" style="border-left: 4px solid #4caf50;">
+                <div class="inner">
+                  <h5 class="mb-0" style="color: #4caf50;">Receitas</h5>
+                  <h4 class="number">R$ {{ total_income | intcomma }}</h4>
+                  <p class="text-muted mb-0">Ultima receita:</p>
+                  <p class="text-muted mb-0">{{ last_income.date }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-arrow-up mt-4"></i>
+                </div>
+              </div>
+            </div> -->
+            <!-- ./col -->
+            <!-- <div class="col-lg-3 col-6"> -->
+              <!-- small box -->
+              <!-- <div class="small-box bg-light" style="border-left: 4px solid #f44336;">
+                <div class="inner">
+                  <h5 class="mb-0" style="color: #f44336;">Despesas</h5>
+                  <h4 class="number">R$ {{ total_expense | intcomma }}</h4>
+                  <p class="text-muted mb-0">Ultima despesa:</p>
+                  <p class="text-muted mb-0">{{ last_expense.date }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-arrow-down mt-4"></i>
+                </div>
+              </div> -->
+            <!-- </div> -->
         </div>
     </div>
 
