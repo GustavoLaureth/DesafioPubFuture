@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'desafio_pub_future.apps.DesafioPubFutureConfig',
     'crispy_forms',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

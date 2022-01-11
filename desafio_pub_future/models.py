@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Income(models.Model):
@@ -15,6 +16,7 @@ class Income(models.Model):
         MON = 4, 'MONTHS'
         YEA = 5, 'YEARS'
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='incomes')
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveIntegerField(choices=ITypes.choices)
@@ -22,6 +24,7 @@ class Income(models.Model):
     repetition_interval = models.PositiveSmallIntegerField(choices=RInterval.choices, default=1)
     repetition_time = models.PositiveSmallIntegerField(default=0)
     comment = models.TextField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -50,12 +53,15 @@ class Expense(models.Model):
         MON = 4, 'MONTHS'
         YEA = 5, 'YEARS'
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='expenses')
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveIntegerField(choices=ETypes.choices)
     repetitive = models.BooleanField(default=False)
     repetition_interval = models.PositiveSmallIntegerField(choices=RInterval.choices, default=1)
     repetition_time = models.PositiveSmallIntegerField(default=0)
+    comment = models.TextField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -70,8 +76,11 @@ class Balance(models.Model):
         CUR = 1, 'CURRENT'
         SAV = 2, 'SAVINGS'
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='balances')
     value = models.DecimalField(max_digits=10, decimal_places=2)
     type = models.PositiveIntegerField(choices=BType.choices)
+    date = models.DateField()
+    comment = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

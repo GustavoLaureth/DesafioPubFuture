@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 {% include 'partials/_head.html' %}
 
@@ -8,18 +9,42 @@
 
 <body> 
     {% include 'partials/_side_bar.html' %}
-
+    
     <div class="content">
-        <div class="title">
+      {% include 'partials/messages.html' %}
+      
+      <div class="title">
             <h1 class="title">Dashboard</h1>
         </div>
+
+        {% if not last_balance %}
+
+          <p>
+            Não foi possivel calcular a dashboard.
+          </p>
+
+        {% else %}
         <div class="row">
             <div class="col-lg-3 col-2">
               <!-- small box -->
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h3 class="number">R$ 150,00</h3>
-                  <p>Receitas</p>
+                  <h5 class="mb-0">Ultimo saldo verificado</p>
+                  <h4 class="number mb-0">R$ {{ last_balance.value | intcomma }}</h4>
+                  <p class="text-muted">{{ last_balance.date }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-2">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h5>Saldo Estimado</p>
+                  <h4 class="number">R$ {{ estimated_balance | intcomma }}</h4>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -31,9 +56,8 @@
               <!-- small box -->
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h3 class="number">R$ 53,00</h3>
-  
-                  <p>Despesas</p>
+                  <h5>Receitas</h5>
+                  <h4 class="number">R$ {{ total_income | intcomma }}</h4>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
@@ -45,9 +69,8 @@
               <!-- small box -->
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h3 class="number">R$ 97,00</h3>
-  
-                  <p>Saldo Atual</p>
+                  <h5>Despesas</h5>
+                  <h4 class="number">R$ {{ total_expense | intcomma }}</h4>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -56,5 +79,7 @@
             </div>
         </div>
     </div>
+
+    {% endif %}
 
 </body>

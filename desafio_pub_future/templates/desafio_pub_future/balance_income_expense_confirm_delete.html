@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
     
-                <h1>Incomes {{ object.pk }}</h1>
+                <h1>{{ delete_what }} {{ object.pk }}</h1>
 
                 <form method="post">{% csrf_token %}
                     <p>Are you sure you want to delete "{{ object }}"?</p>

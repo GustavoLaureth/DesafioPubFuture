@@ -39,18 +39,42 @@
             <p class="dropdown-header text-left">Atualizar finanças:</p>
           </li>
           <li>
-            <a href="{% url 'income_create' %}" class="nav-link text-white">
+            <a href="{% url 'balance_create' %}" class="nav-link text-white">
               <i class="fas fa-money-bill-wave"></i>
+              Novo Saldo
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'income_create' %}" class="nav-link text-white">
+              <i class="bi bi-graph-up-arrow"></i>
               Nova Receita
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'expense_create' %}" class="nav-link text-white">
+              <i class="bi bi-graph-down-arrow"></i>
+              Nova Despesa
             </a>
           </li>
           <li>
             <p class="dropdown-header text-left">Ver finanças:</p>
           </li>
           <li>
+            <a href="{% url 'balance_list' %}" class="nav-link text-white">
+              <i class="fas fa-clipboard"></i>
+              Listar Saldo
+            </a>
+          </li>
+          <li>
             <a href="{% url 'income_list' %}" class="nav-link text-white">
               <i class="fas fa-clipboard"></i>
               Listar Receitas
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'expense_list' %}" class="nav-link text-white">
+              <i class="fas fa-clipboard"></i>
+              Listar Despesas
             </a>
           </li>
         </ul>

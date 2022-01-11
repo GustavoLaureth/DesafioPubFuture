@@ -1,0 +1,44 @@
+{% load static %}
+
+{% include 'partials/_head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/income_form.css' %}">
+</head>
+
+<body>
+    {% include 'partials/_side_bar.html' %}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+    
+                <h1>{{ list_what }}s</h1>
+                <ul>
+                    {% for object in object_list %}
+                        <li>
+                            {% if list_what == 'Income' %}
+                                <a href="{% url 'income_detail' object.pk %}">
+                            {% elif list_what == 'Expense' %}
+                                <a href="{% url 'expense_detail' object.pk %}">
+                            {% elif list_what == 'Balance' %}
+                                <a href="{% url 'balance_detail' object.pk %}">
+                            {% endif %}
+                            {{ object.date|date }} - {{ object.get_type_display }} - {{ object.value }}
+                            {% if list_what != 'Balance' %}
+                                - Repetitive: {{ object.repetitive }}
+                                {% if income.repetitive %}
+                                    every {{ object.repetition_time }} {{ object.get_repetition_interval_display }}
+                                {% endif %}
+                            {% endif %}
+                            </a>
+                        </li>
+                    {% empty %}
+                        <li>Nothing to show yet.</li>
+                    {% endfor %}
+                </ul>
+    
+            </div>
+        </div>
+    </div>
+</body>
