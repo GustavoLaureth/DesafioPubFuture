@@ -8,7 +8,7 @@ i {
     background-color: #343a40;
     border-radius: 5px;
     text-align: left;
-    display: none;
+    display: block;
 }
 
 .menu li {
@@ -24,4 +24,16 @@ i {
     background-color: #f5f6fc !important;
     color: #282c30 !important;
     font-weight: 500 !important;
+}
+
+#balance_link:hover {
+    background-color: #1890ff !important;
+}
+
+#income_link:hover {
+    background-color: #4caf50 !important;
+}
+
+#expense_link:hover {
+    background-color: #f44336 !important;
 }

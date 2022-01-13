@@ -4,25 +4,23 @@ from django.contrib.auth.models import User
 
 class Income(models.Model):
     class ITypes(models.IntegerChoices):
-        SAL = 1, 'SALARY'
-        BON = 2, 'BONUS'
-        GIF = 3, 'GIFT'
-        OTH = 4, 'OTHER'
+        BON = 1, 'Bonus'
+        INV = 2, 'Invesimentos'
+        OTH = 3, 'Outros'
+        GIF = 4, 'Presente'
+        SAL = 5, 'Salario'
 
     class RInterval(models.IntegerChoices):
-        NA = 1, 'N/A'
-        DAY = 2, 'DAYS'
-        WEK = 3, 'WEEKS'
-        MON = 4, 'MONTHS'
-        YEA = 5, 'YEARS'
+        NA = 1, 'Não se aplica'
+        DAY = 2, 'Dias'
+        WEK = 3, 'Semanas'
+        MON = 4, 'Meses'
+        YEA = 5, 'Anos'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='incomes')
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveIntegerField(choices=ITypes.choices)
-    repetitive = models.BooleanField(default=False)
-    repetition_interval = models.PositiveSmallIntegerField(choices=RInterval.choices, default=1)
-    repetition_time = models.PositiveSmallIntegerField(default=0)
     comment = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -36,30 +34,30 @@ class Income(models.Model):
 
 class Expense(models.Model):
     class ETypes(models.IntegerChoices):
-        REN = 1, 'RENT'
-        BIL = 2, 'BILLS'
-        CAR = 3, 'CAR'
-        TRA = 4, 'TRAVEL'
-        HEA = 5, 'HEALTH'
-        GRO = 6, 'GROCERIES'
-        FUN = 7, 'FUN'
-        CLO = 8, 'CLOTHES'
-        CHA = 9, 'CHARITY'
+        HOM = 1, 'Casa'
+        EDU = 2, 'Educação'
+        ELE = 3, 'Eletrônicos'
+        REC = 4, 'Lazer'
+        OTH = 5, 'Outros'
+        CAR = 6, 'Transporte'
+        RES = 7, 'Restaurante'
+        CLO = 8, 'Roupas'
+        HEA = 9, 'Saúde'
+        SER = 10, 'Serviços'
+        SUP = 11, 'Supermercado'
+        TRA = 12, 'Viajem'
 
     class RInterval(models.IntegerChoices):
-        NA = 1, 'N/A'
-        DAY = 2, 'DAYS'
-        WEK = 3, 'WEEKS'
-        MON = 4, 'MONTHS'
-        YEA = 5, 'YEARS'
+        NA = 1, 'Não se aplica'
+        DAY = 2, 'Dias'
+        WEK = 3, 'Semanas'
+        MON = 4, 'Meses'
+        YEA = 5, 'Anos'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='expenses')
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveIntegerField(choices=ETypes.choices)
-    repetitive = models.BooleanField(default=False)
-    repetition_interval = models.PositiveSmallIntegerField(choices=RInterval.choices, default=1)
-    repetition_time = models.PositiveSmallIntegerField(default=0)
     comment = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -73,8 +71,8 @@ class Expense(models.Model):
 
 class Balance(models.Model):
     class BType(models.IntegerChoices):
-        CUR = 1, 'CURRENT'
-        SAV = 2, 'SAVINGS'
+        CUR = 1, 'Corrente'
+        SAV = 2, 'Poupança'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='balances')
     value = models.DecimalField(max_digits=10, decimal_places=2)

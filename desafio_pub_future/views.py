@@ -10,7 +10,6 @@ from .models import Income, Expense, Balance
 from django.http import HttpResponseRedirect
 from datetime import date
 from django.db.models import Sum
-from .helpers import calculate_repetitive_total
 
 
 # --- ACCOUNT VIEW ---
@@ -57,24 +56,18 @@ def logout_view(request):
 
 def dashboard(request):
     last_balance = Balance.objects.filter(user=request.user, type=1).order_by('-date').first()
-    last_income = Income.objects.filter(user=request.user, type=1).order_by('-date').first()
-    last_expense = Expense.objects.filter(user=request.user, type=1).order_by('-date').first()
+    last_income = Income.objects.filter(user=request.user).order_by('-date').first()
+    last_expense = Expense.objects.filter(user=request.user).order_by('-date').first()
     if not last_balance:
         messages.warning(request, 'Nenhum saldo foi registrado. Adicione pelo menos um registro de saldo.')
         return render(request, 'pages/dashboard.html')
 
     today = date.today()
     # initialise total with sums of non repetitive incomes and
-    total_income = Income.objects.filter(user=request.user, date__gte=last_balance.date, date__lte=today, repetitive=False).aggregate(total=Sum('value'))['total']
+    total_income = Income.objects.filter(user=request.user, date__gte=last_balance.date, date__lte=today).aggregate(total=Sum('value'))['total']
     total_income = 0 if total_income is None else total_income
-    total_expense = Expense.objects.filter(user=request.user, date__gte=last_balance.date, date__lte=today, repetitive=False).aggregate(total=Sum('value'))['total']
+    total_expense = Expense.objects.filter(user=request.user, date__gte=last_balance.date, date__lte=today).aggregate(total=Sum('value'))['total']
     total_expense = 0 if total_expense is None else total_expense
-
-    # updated totals with repetitive
-    for income in Income.objects.filter(user=request.user, repetitive=True):
-        total_income += calculate_repetitive_total(income, last_balance, today)
-    for expense in Expense.objects.filter(user=request.user, repetitive=True):
-        total_expense += calculate_repetitive_total(expense, last_balance, today)
 
     context = {
         'last_balance': last_balance,
@@ -114,6 +107,7 @@ class IncomeCreateView(CreateView):
     model = Income
     form_class = IncomeForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Receita'}
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -129,6 +123,7 @@ class IncomeUpdateView(UpdateView):
     model = Income
     form_class = IncomeForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Receita'}
     
     def get_queryset(self):
         user = self.request.user
@@ -176,6 +171,7 @@ class ExpenseCreateView(CreateView):
     model = Expense
     form_class = ExpenseForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Despesa'}
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -191,6 +187,7 @@ class ExpenseUpdateView(UpdateView):
     model = Expense
     form_class = ExpenseForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Despesa'}
     
     def get_queryset(self):
         user = self.request.user
@@ -241,6 +238,7 @@ class BalanceCreateView(CreateView):
     model = Balance
     form_class = BalanceForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Saldo'}
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -256,6 +254,7 @@ class BalanceUpdateView(UpdateView):
     model = Balance
     form_class = BalanceForm
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
+    extra_context = {'header_what': 'Saldo'}
     
     def get_queryset(self):
         user = self.request.user

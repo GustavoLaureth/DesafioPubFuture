@@ -3,7 +3,7 @@
 {% include 'partials/_head.html' %}
 
 <head>
-    <link rel="stylesheet" href="{% static 'styles/income_form.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/_form.css' %}">
 </head>
 
 <body>
@@ -25,12 +25,6 @@
                                 <a href="{% url 'balance_detail' object.pk %}">
                             {% endif %}
                             {{ object.date|date }} - {{ object.get_type_display }} - {{ object.value }}
-                            {% if list_what != 'Balance' %}
-                                - Repetitive: {{ object.repetitive }}
-                                {% if income.repetitive %}
-                                    every {{ object.repetition_time }} {{ object.get_repetition_interval_display }}
-                                {% endif %}
-                            {% endif %}
                             </a>
                         </li>
                     {% empty %}
