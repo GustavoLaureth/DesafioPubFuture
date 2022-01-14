@@ -13,7 +13,9 @@
     <div class="content">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-    
+                
+                <h1 class="text-center mb-4" style="color: #f0ffffde">{{ list_what }}s</h1>
+
                 {% if object_list %}
                 <table id="list-table" class="table">
                     <thead>
@@ -33,14 +35,14 @@
                             <td>R$ {{ object.value | floatformat:2 | intcomma }}</td>
                             <td>{{ object.comment }}</td>
                             <td>
-                                {% if list_what == 'Income' %}
+                                {% if list_what == 'Receita' %}
                                     <a href="{% url 'income_update' object.pk %}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="{% url 'income_delete' object.pk %}" style="color: red;">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                {% elif list_what == 'Expense' %}
+                                {% elif list_what == 'Despesa' %}
                                     <a href="{% url 'expense_update' object.pk %}">
                                         <i class="fas fa-edit"></i>
                                     </a>

@@ -40,7 +40,9 @@ class IncomeForm(forms.ModelForm):
 
     value = forms.DecimalField(initial=0.00)
     date = forms.DateField(widget=DateInput)
-    type = forms.ChoiceField(choices=Income.ITypes.choices)
+    type = forms.ChoiceField(choices=Income.ITypes.choices, initial =3)
+
+    type.widget.attrs['class'] = 'form-control mb-4'
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -48,14 +50,6 @@ class IncomeForm(forms.ModelForm):
     
     def is_valid(self):
         is_valid = super(IncomeForm, self).is_valid()
-
-        value = self.cleaned_data.get('value')
-        value = self.cleaned_data.get('value')
-        form_date = self.cleaned_data.get('date')
-
-        if value <= 0:
-            self.add_error('value', 'O valor deve ser um número positivo')
-            is_valid = False
         return is_valid
 
     def save(self, commit=True):
@@ -72,18 +66,12 @@ class ExpenseForm(forms.ModelForm):
 
     value = forms.DecimalField(initial=0.00)
     date = forms.DateField(widget=DateInput)
-    type = forms.ChoiceField(choices=Expense.ETypes.choices)
+    type = forms.ChoiceField(choices=Expense.ETypes.choices, initial=5)
+
+    type.widget.attrs['class'] = 'form-control mb-4'
 
     def is_valid(self):
         is_valid = super(ExpenseForm, self).is_valid()
-
-        value = self.cleaned_data.get('value')
-        value = self.cleaned_data.get('value')
-        form_date = self.cleaned_data.get('date')
-
-        if value <= 0:
-            self.add_error('value', 'O valor deve ser um número positivo')
-            is_valid = False
         return is_valid
 
     def save(self, commit=True):
@@ -101,3 +89,5 @@ class BalanceForm(forms.ModelForm):
     value = forms.DecimalField(initial=0.00)
     date = forms.DateField(widget=DateInput)
     type = forms.ChoiceField(choices=Balance.BType.choices, initial=1)
+
+    type.widget.attrs['class'] = 'form-control mb-4'

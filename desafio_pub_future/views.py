@@ -88,7 +88,7 @@ class IncomeListView(ListView):
     model = Income
     paginate_by = 100
     template_name = 'desafio_pub_future/balance_income_expense_list.html'
-    extra_context = {'list_what': 'Income'}
+    extra_context = {'list_what': 'Receita'}
 
     def get_queryset(self):
         user = self.request.user
@@ -117,19 +117,15 @@ class IncomeUpdateView(UpdateView):
     template_name = 'desafio_pub_future/balance_income_expense_form.html'
     extra_context = {'header_what': 'Receita'}
     
-    def get_queryset(self):
-        user = self.request.user
-        return Income.objects.filter(user=user)
-    
     def get_success_url(self):
-        return reverse('income_detail', kwargs={'pk': self.object.pk})
+        return reverse('income_list')
 
 
 class IncomeDeleteView(DeleteView):
     model = Income
     success_url = reverse_lazy('income_list')
     template_name = 'desafio_pub_future/balance_income_expense_confirm_delete.html'
-    extra_context = {'delete_what': 'Income'}
+    extra_context = {'delete_what': 'Receita'}
 
     def get_queryset(self):
         user = self.request.user
@@ -143,7 +139,7 @@ class ExpenseListView(ListView):
     model = Expense
     paginate_by = 100
     template_name = 'desafio_pub_future/balance_income_expense_list.html'
-    extra_context = {'list_what': 'Expense'}
+    extra_context = {'list_what': 'Despesa'}
 
     def get_queryset(self):
         user = self.request.user
@@ -177,13 +173,13 @@ class ExpenseUpdateView(UpdateView):
         return Expense.objects.filter(user=user)
     
     def get_success_url(self):
-        return reverse('expense_detail', kwargs={'pk': self.object.pk})
+        return reverse('expense_list')
 
 
 class ExpenseDeleteView(DeleteView):
     model = Expense
     template_name = 'desafio_pub_future/balance_income_expense_confirm_delete.html'
-    extra_context = {'delete_what': 'Expense'}
+    extra_context = {'delete_what': 'Despesa'}
 
     def get_queryset(self):
         user = self.request.user
@@ -200,7 +196,7 @@ class BalanceListView(ListView):
     model = Balance
     paginate_by = 100
     template_name = 'desafio_pub_future/balance_income_expense_list.html'
-    extra_context = {'list_what': 'Balance'}
+    extra_context = {'list_what': 'Saldo'}
 
     def get_queryset(self):
         user = self.request.user
@@ -234,14 +230,14 @@ class BalanceUpdateView(UpdateView):
         return Balance.objects.filter(user=user)
     
     def get_success_url(self):
-        return reverse('balance_detail', kwargs={'pk': self.object.pk})
+        return reverse('balance_list')
 
 
 class BalanceDeleteView(DeleteView):
     model = Balance
     success_url = reverse_lazy('balance_list')
     template_name = 'desafio_pub_future/balance_income_expense_confirm_delete.html'
-    extra_context = {'delete_what': 'Balance'}
+    extra_context = {'delete_what': 'Saldo'}
 
     def get_queryset(self):
         user = self.request.user
