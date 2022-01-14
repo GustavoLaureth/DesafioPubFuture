@@ -66,3 +66,18 @@ i {
 #id_type > option {
     background: #201b2c;
 }
+
+.table {
+    background-color: #514869 !important;
+    color: #f0ffffde !important;
+    border-radius: 25px;
+}
+
+.table td, .table th {
+    padding: 15px;
+    border: none !important;
+}
+
+.table tbody {
+    border-top: 1px solid currentColor !important;
+}

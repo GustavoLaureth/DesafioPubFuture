@@ -94,15 +94,6 @@ class IncomeListView(ListView):
         user = self.request.user
         return Income.objects.filter(user=user)
 
-class IncomeDetailView(DetailView):
-    model = Income
-    template_name = 'desafio_pub_future/balance_income_expense_detail.html'
-    extra_context = {'detail_what': 'Income'}
-
-    def get_queryset(self):
-        user = self.request.user
-        return Income.objects.filter(user=user)
-
 
 class IncomeCreateView(CreateView):
     model = Income
@@ -153,15 +144,6 @@ class ExpenseListView(ListView):
     paginate_by = 100
     template_name = 'desafio_pub_future/balance_income_expense_list.html'
     extra_context = {'list_what': 'Expense'}
-
-    def get_queryset(self):
-        user = self.request.user
-        return Expense.objects.filter(user=user)
-
-class ExpenseDetailView(DetailView):
-    model = Expense
-    template_name = 'desafio_pub_future/balance_income_expense_detail.html'
-    extra_context = {'detail_what': 'Expense'}
 
     def get_queryset(self):
         user = self.request.user
@@ -219,16 +201,6 @@ class BalanceListView(ListView):
     paginate_by = 100
     template_name = 'desafio_pub_future/balance_income_expense_list.html'
     extra_context = {'list_what': 'Balance'}
-
-    def get_queryset(self):
-        user = self.request.user
-        return Balance.objects.filter(user=user)
-
-
-class BalanceDetailView(DetailView):
-    model = Balance
-    template_name = 'desafio_pub_future/balance_income_expense_detail.html'
-    extra_context = {'detail_what': 'Balance'}
 
     def get_queryset(self):
         user = self.request.user

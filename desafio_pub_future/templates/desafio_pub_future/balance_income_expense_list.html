@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 {% include 'partials/_head.html' %}
 
@@ -13,25 +14,55 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
     
-                <h1>{{ list_what }}s</h1>
-                <ul>
+                {% if object_list %}
+                <table id="list-table" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Data</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Comentário</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
                     {% for object in object_list %}
-                        <li>
-                            {% if list_what == 'Income' %}
-                                <a href="{% url 'income_detail' object.pk %}">
-                            {% elif list_what == 'Expense' %}
-                                <a href="{% url 'expense_detail' object.pk %}">
-                            {% elif list_what == 'Balance' %}
-                                <a href="{% url 'balance_detail' object.pk %}">
-                            {% endif %}
-                            {{ object.date|date }} - {{ object.get_type_display }} - {{ object.value }}
-                            </a>
-                        </li>
-                    {% empty %}
-                        <li>Nothing to show yet.</li>
+                        <tr>
+                            <td>{{ object.date|date:"d/m/Y" }}</td>
+                            <td>{{ object.get_type_display }}</td>
+                            <td>R$ {{ object.value | floatformat:2 | intcomma }}</td>
+                            <td>{{ object.comment }}</td>
+                            <td>
+                                {% if list_what == 'Income' %}
+                                    <a href="{% url 'income_update' object.pk %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'income_delete' object.pk %}" style="color: red;">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                {% elif list_what == 'Expense' %}
+                                    <a href="{% url 'expense_update' object.pk %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'expense_delete' object.pk %}" style="color: red;">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                {% else %}
+                                <a href="{% url 'balance_update' object.pk %}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'balance_delete' object.pk %}" style="color: red;">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
                     {% endfor %}
-                </ul>
-    
+                    </tbody>
+                </table>
+                {% else %}
+                    Nada para mostrar ainda
+                {% endif %}
             </div>
         </div>
     </div>

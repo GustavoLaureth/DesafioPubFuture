@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 class Income(models.Model):
     class ITypes(models.IntegerChoices):
-        BON = 1, 'Bonus'
+        BON = 1, 'Bônus'
         INV = 2, 'Invesimentos'
         OTH = 3, 'Outros'
         GIF = 4, 'Presente'
-        SAL = 5, 'Salario'
+        SAL = 5, 'Salário'
 
     class RInterval(models.IntegerChoices):
         NA = 1, 'Não se aplica'

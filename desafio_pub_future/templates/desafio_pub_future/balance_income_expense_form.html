@@ -24,10 +24,35 @@
                         
                         <input type="date" name="date" id="id_date" class="form-control mb-4" required>
                         
-                        <select name="type" id="id_type" class="form-control mb-4">
-                            <option value="1" selected="">Corrente</option>
-                            <option value="2">Poupança</option>
-                        </select>
+                        {% if request.path == '/balance_create/' or request.path == '/balance_detail/' %}
+                            <select name="type" id="id_type" class="form-control mb-4">
+                                <option value="1" selected="">Corrente</option>
+                                <option value="2">Poupança</option>
+                            </select>
+                        {% elif request.path == '/income_create/' or request.path == '/income_detail/' %}
+                            <select name="type" id="id_type" class="form-control mb-4">
+                                <option value="1">Bônus</option>
+                                <option value="2">Invesimentos</option>
+                                <option value="3" selected="">Outros</option>
+                                <option value="4">Presente</option>
+                                <option value="5">Salário</option>
+                            </select>
+                        {% elif request.path == '/expense_create/' or request.path == 'expense_detail' %}
+                            <select name="type" id="id_type" class="form-control mb-4">
+                                <option value="1">Casa</option>
+                                <option value="2">Educação</option>
+                                <option value="3">Eletrônicos</option>
+                                <option value="4">Lazer</option>
+                                <option value="5" selected="">Outros</option>
+                                <option value="6">Transporte</option>
+                                <option value="7">Restaurante</option>
+                                <option value="8">Roupas</option>
+                                <option value="9">Saúde</option>
+                                <option value="10">Serviços</option>
+                                <option value="11">Supermercado</option>
+                                <option value="12">Viajem</option>
+                            </select>
+                        {% endif %}
                         
                         <input type="text" name="comment" class="form-control mb-4" id="id_comment" rows="1" placeholder="Descrição" autocomplete="off">
                             
