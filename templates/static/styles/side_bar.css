@@ -20,6 +20,11 @@ i {
     background-color: #2f2841;
 }
 
+#link:hover {
+    transition: .3s;
+    background-color: #201b2c;
+}
+
 .active {
     background: #514869 !important;
     color: #f0ffffde !important;
