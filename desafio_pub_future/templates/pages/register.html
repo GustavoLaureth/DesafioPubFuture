@@ -27,15 +27,26 @@
             <label for="password">E-mail</label>
             <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required>
           </div>
+          <hr style="color: #f0ffff94; width: 100%;">
+          <div class="message">
+            <p>A senha deve ter pelo menos 8 caracteres (letras, números e, caracteres especiais).</p>
+          </div>
           <div class="textfield">
             <label for="password">Senha</label>
             <input type="password" name="password1" id="inputPassword1" class="form-control mb-3" placeholder="Senha" required>
           </div>
           <div class="textfield">
             <label for="password">Confirmar senha</label>
-            <input type="password" name="password2" id="inputPassword1" class="form-control mb-3" placeholder="Confirmar senha" required>
+            <input type="password" name="password2" id="inputPassword2" class="form-control mb-3" placeholder="Confirmar senha" required>
             </div>
-            {% if messages %}
+
+            {% for field in form %}
+              {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+              {% endfor %}
+            {% endfor %}
+
+            <!-- {% if messages %}
               {% for message in messages %}
                 <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
                   {{ message }}
@@ -44,7 +55,7 @@
                   </button>
                 </div>
               {% endfor %}
-            {% endif %}
+            {% endif %} -->
             <button class="btn-login" type="submit">Cadastrar</button>
             <p class="text-center mb-0">
               <a href="{% url 'login' %}" style="color: #00ff88;">Eu já tenho uma conta</a>

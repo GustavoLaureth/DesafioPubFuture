@@ -20,12 +20,6 @@ def register(request):
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        username = request.POST.get('username')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
-
-        if password1 != password2:
-            messages.error(request, 'As senhas não coincidem')
 
         if form.is_valid():
             form.save()
