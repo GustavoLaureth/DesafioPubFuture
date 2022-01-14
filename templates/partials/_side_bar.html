@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{% static 'styles/side_bar.css' %}">
 </head>
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark side-bar" style="width: 260px; height: 100vh; background-color: #212529 !important;">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark side-bar" style="width: 260px; height: 100vh; background-color: #201b2c !important;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <span class="fs-4">Olá {{ user.username }}!</span>
     </a>
@@ -24,7 +24,7 @@
         </a>
         <ul class="menu" id="menu">
           <li>
-            <p class="dropdown-header text-left">Atualizar finanças:</p>
+            <p class="dropdown-header text-left" style="color: #dae7e7c4;">Atualizar finanças:</p>
           </li>
           <li>
             <a href="{% url 'balance_create' %}" id="balance_link" class="nav-link{% if request.path == '/balance_create/' %} active{% else %} text-white {% endif %}">
@@ -45,22 +45,22 @@
             </a>
           </li>
           <li>
-            <p class="dropdown-header text-left">Ver finanças:</p>
+            <p class="dropdown-header text-left" style="color: #dae7e7c4;">Ver finanças:</p>
           </li>
           <li>
-            <a href="{% url 'balance_list' %}" id="balance_link" class="nav-link text-white">
+            <a href="{% url 'balance_list' %}" id="balance_link" class="nav-link{% if request.path == '/balance_list/' %} active{% else %} text-white {% endif %}">
               <i class="fas fa-clipboard"></i>
               Listar Saldo
             </a>
           </li>
           <li>
-            <a href="{% url 'income_list' %}" id="income_link" class="nav-link text-white">
+            <a href="{% url 'income_list' %}" id="income_link" class="nav-link{% if request.path == '/income_list/' %} active{% else %} text-white {% endif %}">
               <i class="fas fa-clipboard"></i>
               Listar Receitas
             </a>
           </li>
           <li>
-            <a href="{% url 'expense_list' %}" id="expense_link" class="nav-link text-white">
+            <a href="{% url 'expense_list' %}" id="expense_link" class="nav-link{% if request.path == '/expense_list/' %} active{% else %} text-white {% endif %}">
               <i class="fas fa-clipboard"></i>
               Listar Despesas
             </a>

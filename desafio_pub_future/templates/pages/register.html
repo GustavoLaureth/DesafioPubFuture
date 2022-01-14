@@ -2,40 +2,57 @@
 
 {% include 'partials/_head.html' %}
 
-<body class="register-page" style="min-height: 570.781px;">
-    <div class="register-box">
-      <div class="register-logo">
-        <p><b>Pub</b> Finanças Pessoais</p>
-      </div>
-    
-      <div class="card">
-        <div class="card-body register-card-body">
-    
-          <form class="user" method="POST">
-            {% csrf_token %}
 
-            <h1 class="h3 mb-3 font-weight-normal text-center">Cadastrar uma conta</h1>
-  
-            <input type="text" name="username" id="inputUsername" class="form-control mb-3" placeholder="Username" required autofocus>
-            
-            <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required>
-  
-            <input type="password" name="password1" id="inputPassword1" class="form-control mb-3" placeholder="Senha" required>
-            
-            <input type="password" name="password2" id="inputPassword1" class="form-control mb-3" placeholder="Confirmar senha" required>
 
-  
-            <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Cadastrar</button>
-          </form>
-    
-          <p class="text-center mb-0">
-            <a href="{% url 'login' %}">Eu já tenho uma conta</a>
-          </p>
-        </div>
-        <!-- /.form-box -->
-      </div><!-- /.card -->
+
+
+<head>
+  <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+</head>
+
+<body>
+  <div class="main-login">
+    <div class="left-login">
+      <h1>Cadastre-se<br>E entre para o nosso time.</h1>
     </div>
-    <!-- /.register-box -->
+    <form method="POST">{% csrf_token %}
+      <div class="right-login">
+        <div class="card-login">
+          <h1>CADASTRAR</h1>
+          <div class="textfield">
+            <label for="username">Usuário</label>
+            <input type="text" name="username" id="inputUsername" class="form-control mb-3" placeholder="Usuário" required autofocus>
+          </div>
+          <div class="textfield">
+            <label for="password">E-mail</label>
+            <input type="email" name="email" id="inputEmail" class="form-control mb-3" placeholder="E-mail" required>
+          </div>
+          <div class="textfield">
+            <label for="password">Senha</label>
+            <input type="password" name="password1" id="inputPassword1" class="form-control mb-3" placeholder="Senha" required>
+          </div>
+          <div class="textfield">
+            <label for="password">Confirmar senha</label>
+            <input type="password" name="password2" id="inputPassword1" class="form-control mb-3" placeholder="Confirmar senha" required>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+            <button class="btn-login" type="submit">Cadastrar</button>
+            <p class="text-center mb-0">
+              <a href="{% url 'login' %}" style="color: #00ff88;">Eu já tenho uma conta</a>
+            </p>
+          </div>
+        </div>
+      </form>
+  </div>
     
     <!-- jQuery -->
     <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>

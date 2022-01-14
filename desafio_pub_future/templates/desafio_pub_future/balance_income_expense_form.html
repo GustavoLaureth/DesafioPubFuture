@@ -16,68 +16,23 @@
 
                 <div class="form">
                     
-                    <h1 class="h3 mb-3 font-weight-normal text-center">{% if request.path == '/balance_create/' or request.path == '/income_create/' or request.path == '/expense_create/'%}Adicionar {% else %}Atualizar {% endif %}{{ header_what }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal text-center" style="color: #f0ffffde;">{% if request.path == '/balance_create/' or request.path == '/income_create/' or request.path == '/expense_create/'%}Adicionar {% else %}Atualizar {% endif %}{{ header_what }}</h1>
                     
                     <form class="form-signin" method="POST">{% csrf_token %}
                         
-                        {% if request.path == '/balance_create/' %}
+                        <input type="number" name="value" id="id_value" class="form-control mb-4" value="0.00" required autofocus autocomplete="off" min="0" step="0.01">
                         
-                            <input type="number" name="value" id="id_value" class="form-control mb-4" value="0.00" required autofocus autocomplete="off" min="0" step="0.01" style="border-bottom: 2px solid #1890ff;">
+                        <input type="date" name="date" id="id_date" class="form-control mb-4" required>
                         
-                            <input type="date" name="date" id="id_date" class="form-control mb-4" required style="border-bottom: 2px solid #1890ff;">
+                        <select name="type" id="id_type" class="form-control mb-4">
+                            <option value="1" selected="">Corrente</option>
+                            <option value="2">Poupança</option>
+                        </select>
                         
-                            <select name="type" id="id_type" class="form-control mb-4" style="border-bottom: 2px solid #1890ff;">
-                                <option value="1" selected="">Corrente</option>
-                                <option value="2">Poupança</option>
-                            </select>
-                        
-                            <input type="text" name="comment" class="form-control mb-4" id="id_comment" rows="1" placeholder="Descrição" autocomplete="off" style="border-bottom: 2px solid #1890ff;">
+                        <input type="text" name="comment" class="form-control mb-4" id="id_comment" rows="1" placeholder="Descrição" autocomplete="off">
                             
-                            <button class="btn btn-lg btn-primary btn-block mb-0" type="submit" value="submit" style="background-color: #1890ff; border-color: #1890ff;">SALVAR</button>
-                        {% elif request.path == '/income_create/' %}
-                            
-                            <input type="number" name="value" id="id_value" class="form-control mb-4" value="0.00" required autofocus autocomplete="off" min="0" step="0.01" style="border-bottom: 2px solid #4caf50;">
-                        
-                            <input type="date" name="date" id="id_date" class="form-control mb-4" required style="border-bottom: 2px solid #4caf50;">
-                        
-                            <select name="type" id="id_type" class="form-control mb-4" style="border-bottom: 2px solid #4caf50;">
-                                <option value="1">Bonus</option>
-                                <option value="2">Invesimentos</option>
-                                <option value="3" selected="">Outros</option>
-                                <option value="4">Presente</option>
-                                <option value="5">Salario</option>
-                            </select>
-                        
-                            <input type="text" name="comment" class="form-control mb-4" id="id_comment" rows="1" placeholder="Descrição" autocomplete="off" style="border-bottom: 2px solid #4caf50;">
+                        <button class="btn btn-lg btn-primary btn-block mb-0" type="submit" value="submit" style="background-color: #00ff88; border-color: #00ff88;">SALVAR</button>
 
-                            <button class="btn btn-lg btn-primary btn-block mb-0" type="submit" value="submit" style="background-color: #4caf50; border-color: #4caf50;">SALVAR</button>
-                        {% else %}
-                            
-                            <input type="number" name="value" id="id_value" class="form-control mb-4" value="0.00" required autofocus autocomplete="off" min="0" step="0.01" style="border-bottom: 2px solid #f44336;">
-                        
-                            <input type="date" name="date" id="id_date" class="form-control mb-4" required style="border-bottom: 2px solid #f44336;">
-                        
-                            <select name="type" id="id_type" class="form-control mb-4" style="border-bottom: 2px solid #f44336;">
-                                <option value="1">Casa</option>
-                                <option value="2">Educação</option>
-                                <option value="3">Eletrônicos</option>
-                                <option value="4">Lazer</option>
-                                <option value="5" selected="">Outros</option>
-                                <option value="6">Transporte</option>
-                                <option value="7">Restaurante</option>
-                                <option value="8">Roupas</option>
-                                <option value="9">Saúde</option>
-                                <option value="10">Serviços</option>
-                                <option value="11">Supermercado</option>
-                                <option value="12">Viajem</option>
-                            </select>
-                        
-                            <input type="text" name="comment" class="form-control mb-4" id="id_comment" rows="1" placeholder="Descrição" autocomplete="off" style="border-bottom: 2px solid #f44336;">
-
-                            <button class="btn btn-lg btn-primary btn-block mb-0" type="submit" value="submit" style="background-color: #f44336; border-color: #f44336;">SALVAR</button>
-                            
-                        {% endif %}
-                        
                     </form>
                 </div>
     

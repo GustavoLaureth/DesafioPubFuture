@@ -4,95 +4,95 @@
 {% include 'partials/_head.html' %}
 
 <head>
-    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
 </head>
 
-<body> 
-    {% include 'partials/_side_bar.html' %}
-    
-    <div class="content">
-      {% include 'partials/messages.html' %}
-      
-      <div class="title">
-            <h1 class="title">Dashboard</h1>
-        </div>
+<body>
+  {% include 'partials/_side_bar.html' %}
 
-        {% if not last_balance %}
+  <div class="content">
+    {% include 'partials/messages.html' %}
 
-          <p>
-            Não foi possivel calcular a dashboard.
-          </p>
-
-        {% else %}
-        <div class="row">
-            <div class="col-lg-3 col-2">
-              <!-- small box -->
-              <div class="small-box bg-light" style="border-left: 4px solid #1890ff;">
-                <div class="inner">
-                  <h5 class="mb-0" style="color: #1890ff;">Ultimo saldo verificado</p>
-                  <h4 class="number mb-0">R$ {{ last_balance.value | floatformat:2 | intcomma }}</h4>
-                  <p class="text-muted">{{ last_balance.date }}</p>
-                </div>
-                <div class="icon" style="color: #1890ff;">
-                  <i class="fas fa-calendar mt-4"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-2">
-              <!-- small box -->
-              <div class="small-box bg-light" style="border-left: 4px solid #00796b;">
-                <div class="inner">
-                  <h5 class="mb-0" style="color: #00796b;">Saldo Estimado</p>
-                  <h4 class="number mb-0">R$ {{ estimated_balance | floatformat:2 | intcomma }}</h4>
-                  <p class="text-muted" style="color: transparent !important;">-</p>
-                </div>
-                <div class="icon" style="color: #00796b;">
-                  <i class="fas fa-dollar-sign mt-4"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-2">
-              <!-- small box -->
-              <div class="small-box bg-light" style="border-left: 4px solid #4caf50;">
-                <div class="inner">
-                  <h5 class="mb-0" style="color: #4caf50;">Receitas</p>
-                  <h4 class="number mb-0">R$ {{ total_income | floatformat:2 | intcomma }}</h4>
-                  <p class="text-muted mb-0">Ultima receita:</p>
-                  {% if last_income.date %}
-                    <p class="text-muted mb-0">{{ last_income.date }}</p>
-                  {% else %}
-                    <p class="text-muted" style="color: transparent !important;">-</p>
-                  {% endif %}
-                </div>
-                <div class="icon" style="color: #4caf50;">
-                  <i class="fas fa-arrow-up mt-4"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-2">
-              <!-- small box -->
-              <div class="small-box bg-light" style="border-left: 4px solid #f44336;">
-                <div class="inner">
-                  <h5 class="mb-0" style="color: #f44336;">Despesas</p>
-                  <h4 class="number mb-0">R$ {{ total_expense | floatformat:2 | intcomma }}</h4>
-                  <p class="text-muted mb-0">Ultima despesa:</p>
-                  {% if last_expense.date %}
-                    <p class="text-muted mb-0">{{ last_expense.date }}</p>
-                  {% else %}
-                    <p class="text-muted" style="color: transparent !important;">-</p>
-                  {% endif %}
-                </div>
-                <div class="icon" style="color: #f44336;">
-                  <i class="fas fa-arrow-down mt-4"></i>
-                </div>
-              </div>
-            </div>
-        </div>
+    <div class="title">
+      <h1>Dashboard</h1>
     </div>
 
-    {% endif %}
+    {% if not last_balance %}
+
+    <p>
+      Não foi possivel calcular a dashboard.
+    </p>
+
+    {% else %}
+    <div class="row">
+      <div class="col-lg-3 col-2">
+        <!-- small box -->
+        <div class="small-box bg-dark" style="border-left: 4px solid #1890ff; background-color: #514869 !important;">
+          <div class="inner">
+            <h5 class="mb-0" style="color: #1890ff;">Ultimo saldo verificado</p>
+              <h4 class="number mb-0">R$ {{ last_balance.value | floatformat:2 | intcomma }}</h4>
+              <p class="text-muted" style="color: #dae7e7c4 !important;">{{ last_balance.date }}</p>
+          </div>
+          <div class="icon" style="color: #1890ff;">
+            <i class="fas fa-calendar mt-4"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-2">
+        <!-- small box -->
+        <div class="small-box bg-dark" style="border-left: 4px solid #00796b; background-color: #514869 !important;">
+          <div class="inner">
+            <h5 class="mb-0" style="color: #00796b;">Saldo Estimado</p>
+              <h4 class="number mb-0">R$ {{ estimated_balance | floatformat:2 | intcomma }}</h4>
+              <p class="text-muted" style="color: transparent !important;">-</p>
+          </div>
+          <div class="icon" style="color: #00796b;">
+            <i class="fas fa-dollar-sign mt-4"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-2">
+        <!-- small box -->
+        <div class="small-box bg-dark" style="border-left: 4px solid #4caf50; background-color: #514869 !important;">
+          <div class="inner">
+            <h5 class="mb-0" style="color: #4caf50;">Receitas</p>
+              <h4 class="number mb-0">R$ {{ total_income | floatformat:2 | intcomma }}</h4>
+              <p class="text-muted mb-0" style="color: #dae7e7c4 !important;">Ultima receita:</p>
+              {% if last_income.date %}
+              <p class="text-muted mb-0" style="color: #dae7e7c4 !important;">{{ last_income.date }}</p>
+              {% else %}
+              <p class="text-muted" style="color: transparent !important;">-</p>
+              {% endif %}
+          </div>
+          <div class="icon" style="color: #4caf50;">
+            <i class="fas fa-arrow-up mt-4"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-2">
+        <!-- small box -->
+        <div class="small-box bg-dark" style="border-left: 4px solid #f44336; background-color: #514869 !important;">
+          <div class="inner">
+            <h5 class="mb-0" style="color: #f44336;">Despesas</p>
+              <h4 class="number mb-0">R$ {{ total_expense | floatformat:2 | intcomma }}</h4>
+              <p class="text-muted mb-0" style="color: #dae7e7c4 !important;">Ultima despesa:</p>
+              {% if last_expense.date %}
+              <p class="text-muted mb-0" style="color: #dae7e7c4 !important;">{{ last_expense.date }}</p>
+              {% else %}
+              <p class="text-muted" style="color: transparent !important;">-</p>
+              {% endif %}
+          </div>
+          <div class="icon" style="color: #f44336;">
+            <i class="fas fa-arrow-down mt-4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
 
 </body>

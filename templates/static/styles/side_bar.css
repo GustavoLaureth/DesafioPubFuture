@@ -5,35 +5,27 @@ i {
 .menu {
     margin-top: 5px;
     padding: 0 0 8px 0;
-    background-color: #343a40;
+    background-color: #2f2841;
     border-radius: 5px;
     text-align: left;
     display: block;
 }
 
-.menu li {
+.menu > li {
     list-style: none;
 }
 
-.nav-link:hover {
+.nav-link:nth-child(1):hover {
     transition: .3s;
-    background-color: #282c30;
+    background-color: #2f2841;
 }
 
 .active {
-    background-color: #f5f6fc !important;
-    color: #282c30 !important;
-    font-weight: 500 !important;
+    background: #514869 !important;
+    color: #f0ffffde !important;
+    font-weight: 500;
 }
 
-#balance_link:hover {
-    background-color: #1890ff !important;
-}
-
-#income_link:hover {
-    background-color: #4caf50 !important;
-}
-
-#expense_link:hover {
-    background-color: #f44336 !important;
+.text-white {
+    color: #f0ffffde !important;
 }

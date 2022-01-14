@@ -2,53 +2,45 @@
 
 {% include 'partials/_head.html' %}
 
-<body class="login-page" style="min-height: 496.781px;">
-  <div class="login-box">
-    <div class="login-logo">
-      <p><b>Pub</b> Finanças Pessoais</p>
+<head>
+  <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+</head>
+
+<body>
+  <div class="main-login">
+    <div class="left-login">
+      <h1>Faça login<br>Para gerenciar as suas finanças.</h1>
     </div>
-    <!-- /.login-logo -->
-    <div class="card">
-      <div class="card-body login-card-body">
-
-        <form class="form-signin" method="POST">{% csrf_token %}
-
-          <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
-
-          <input type="text" name="username" id="inputUsername" class="form-control mb-3" placeholder="Username" required
-            autofocus>
-
-          <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Senha"
-            required>
-
-          {% if messages %}
-          {% for message in messages %}
-          <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <form method="POST">{% csrf_token %}
+        <div class="right-login">
+          <div class="card-login">
+            <h1>LOGIN</h1>
+            <div class="textfield">
+              <label for="username">Usuário</label>
+              <input type="text" name="username" placeholder="Usuário" autofocus>
+            </div>
+            <div class="textfield">
+              <label for="password">Senha</label>
+              <input type="password" name="password" placeholder="Senha">
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+            <button class="btn-login" type="submit">Login</button>
+            <p class="text-center mb-0">
+              <a href="{% url 'register' %}" style="color: #00ff88;">Cadastrar uma nova conta</a>
+            </p>
           </div>
-
-          {% endfor %}
-          {% endif %}
-
-          <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Log in</button>
-        </form>
-
-        <!-- /.social-auth-links -->
-
-        <p class="mb-1 text-center">
-          <a href="#">Esqueci minha senha</a>
-        </p>
-        <p class="mb-0 text-center">
-          <a href="{% url 'register' %}" class="text-center">Registrar uma nova conta</a>
-        </p>
-      </div>
-      <!-- /.login-card-body -->
-    </div>
+        </div>
+      </form>
   </div>
-  <!-- /.login-box -->
 
   <!-- jQuery -->
   <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
