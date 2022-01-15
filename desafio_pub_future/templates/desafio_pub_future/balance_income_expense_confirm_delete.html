@@ -12,13 +12,18 @@
     <div class="content">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-    
-                <h1>{{ delete_what }} {{ object.pk }}</h1>
+                
+                <div class="delete">
+                    
+                    <form method="post">{% csrf_token %}
+                        <h1 class="text-left mb-4">{{ delete_what }} {{ object.pk }}</h1>
 
-                <form method="post">{% csrf_token %}
-                    <p>Are you sure you want to delete "{{ object }}"?</p>
-                    <input type="submit" value="Confirm">
-                </form>
+                        <p>Tem certeza de que deseja excluir "{{ object }}"?</p>
+
+                        <input class="btn btn-danger col-lg-6 mt-2" type="submit" value="Confirm">
+                    </form>
+
+                </div>
     
             </div>
         </div>

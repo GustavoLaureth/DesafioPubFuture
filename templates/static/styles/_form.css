@@ -81,3 +81,16 @@ i {
 .table tbody {
     border-top: 1px solid currentColor !important;
 }
+
+.delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #f0ffffde;
+}
+
+.delete > h1 {
+    width: 100%;
+    text-align: left !important;
+}
