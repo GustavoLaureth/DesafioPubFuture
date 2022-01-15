@@ -4,7 +4,7 @@
 
 - Crie uma pasta no Windows
 - Aperte o botão direito e em Git Bash Here
-- Executar os comandos: git init e git clone https://github.com/GustavoLaureth/DesafioPubFuture.git;
+- Executar os comandos: git init e git clone https://github.com/GustavoLaureth/DesafioPubFuture.git
 - Entrar na pasta criada e abrir o Visual Studio Code
 - Abrir o PowerShell do Windows como administrador
 - Executar o comando: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
