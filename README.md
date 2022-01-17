@@ -11,5 +11,6 @@
 - Abrir o terminal do Visual Studio Code
 - Executar o comando: python -m venv env
 - Depois execute este comando: .\env\Scripts\Activate.ps1
-- E por ultimo o comando: pip install -r requirements.txt
+- Agora vamos instalar todas as bibliotecas necessárias com o comando: pip install -r requirements.txt
+- Agora devemos fazer as migrações do banco de dados: python manage.py makemigrations e python manage.py migrate
 - Agora é so rodar a aplicação: python manage.py runserver
