@@ -5,7 +5,6 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'styles/_form.css' %}">
-    <script src="{% static 'scripts/mask.js' %}"></script>
 </head>
 
 <body>
@@ -37,18 +36,4 @@
             </div>
         </div>
     </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<script src="{% static 'scripts/mask.js' %}"></script>
-
-<script>
-    $(function(){
-        $('#id_value').maskMoney({
-          prefix:'R$ ',
-          allowNegative: false,
-          thousands:'.', decimal:',',
-          affixesStay: true});
-    })
-</script>
-
 </body>

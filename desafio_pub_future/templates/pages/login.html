@@ -34,16 +34,6 @@
               {% endfor %}
             {% endif %}
             <button class="btn-login" type="submit">Login</button>
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-              {% endfor %}
-            {% endif %}
             <p class="text-center mb-0">
               <a href="{% url 'register' %}" style="color: #00ff88;">Cadastrar uma nova conta</a>
             </p>
