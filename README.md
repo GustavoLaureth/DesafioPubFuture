@@ -14,3 +14,4 @@
 - Agora vamos instalar todas as bibliotecas necessárias com o comando: pip install -r requirements.txt
 - Agora devemos fazer as migrações do banco de dados: python manage.py makemigrations e python manage.py migrate
 - Agora é so rodar a aplicação: python manage.py runserver
+
